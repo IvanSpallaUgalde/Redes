@@ -1,0 +1,23 @@
+Cantidad de informacion contenida en un mensaje p_i:
+I_i = log{b}{1/p_i} 
+--> b es la base, por convencion se elige 2 para representar bits
+
+Entropia:
+H(X) = \sum{p_i * I_i} = \sum{p_i * log{2}{1/p_i}}
+--> Cantidad de informacion transmitida por un simbolo
+
+Entropia binaria:
+omega(p) = p * log{2}{1/p} + (1-p) * log{2}{1/1-p}
+-->Suponiendo que la probabilidad de los simbolos son p y 1-p
+
+Longitud media del codigo:
+L = \sum{p_i * L_i}
+--> Codificacion de fuente es optima cuando L = H(X)
+
+Eficiencia del codigo fuente:
+n = H(X)/L
+--> Unidad de medida: bits de informacion por digito binario (bits/binit)
+
+Desigualdad de Karft-McMillan:
+K = \sum{2^-L_i} <= 1
+
