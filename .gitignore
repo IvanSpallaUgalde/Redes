@@ -194,5 +194,6 @@ pyrightconfig.json
 
 # Files
 test.py
+*.png
 
 # End of https://www.toptal.com/developers/gitignore/api/python,visualstudiocode
