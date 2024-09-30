@@ -1,0 +1,20 @@
+digraph {
+	0 [color=red]
+	"" -> 0 [label=0]
+	01 [color=red]
+	0 -> 01 [label=1]
+	011 [color=red]
+	01 -> 011 [label=1]
+	0111 [color=red]
+	011 -> 0111 [label=1]
+	0110
+	011 -> 0110 [label=0]
+	01100 [color=red]
+	0110 -> 01100 [label=0]
+	010
+	01 -> 010 [label=0]
+	0100
+	010 -> 0100 [label=0]
+	01000 [color=red]
+	0100 -> 01000 [label=0]
+}

@@ -22,7 +22,7 @@ class BinaryTree:
                         if father is None:
                             actual_node.right.path = '0'
                         else:
-                            actual_node.right.path = father.path + '0'
+                            actual_node.right.path = actual_node.path + '0'
                     else:
                         actual_node.right.final = True
                 else:
@@ -31,7 +31,7 @@ class BinaryTree:
                         if father is None:
                             actual_node.right.path = '0'
                         else:
-                            actual_node.right.path = father.path + '0'
+                            actual_node.right.path = actual_node.path + '0'
                     father = actual_node
                     actual_node = actual_node.right
             
@@ -42,7 +42,7 @@ class BinaryTree:
                         if father is None:
                             actual_node.left.path = '1'
                         else:
-                            actual_node.left.path = father.path + '1'
+                            actual_node.left.path = actual_node.path + '1'
                     else:
                         actual_node.left.final = True
                 else:
@@ -51,52 +51,28 @@ class BinaryTree:
                         if father is None:
                             actual_node.left.path = '1'
                         else:
-                            actual_node.left.path = father.path + '1'
+                            actual_node.left.path = actual_node.path + '1'
+                    father = actual_node
                     actual_node = actual_node.left
 
-    '''
     def draw(self):
-        
-        def height(node):
-            return 1 + max(height(node.left), height(node.right)) if node else -1
-        
-        nlevels = height(self.root)
-        width = pow(2,nlevels+1)
+        dot = Digraph()
 
-        q=[(self.root,0,width,'c')]
-        levels=[]
-
-        while(q):
-            node,level,x,align= q.pop(0)
-            if node:
-                if len(levels)<=level:
-                    levels.append([])
-
-                levels[level].append([node,level,x,align])
-                seg= width//pow(2,level+1)
-                q.append((node.left,level+1,x-seg,'l'))
-                q.append((node.right,level+1,x+seg,'r'))
-
-        for i, l in enumerate(levels):
-            pre=0
-            preline=0
-            linestr=''
-            pstr=''
-            seg = width//(pow(2,i+1))
-            for n in l:
-                valstr = str(n[0].path)
-                if n[3]=='r':
-                    linestr+=' '*(n[2]-preline-1-seg-seg//2)+ '¯'*(seg +seg//2)+'\\'
-                    preline = n[2]
-                if n[3] =='l':
-                    linesrt+=' '*(n[2]-preline-1)+'/' + '¯'*(seg+seg//2)
-                    preline = n[2] + seg + seg//2
-                pstr+=' '*(n[2]-pre-len(valstr))+valstr
-                pre = n[2]
-            print(linestr)
-            print(pstr)
-    '''
-    def plot():
-
-        dot = Digraph(comment='Binary Tree')
-        
+        def add_nodes_edges(node):
+            if node.left:
+                if node.left.final:
+                    dot.node(str(node.left.path), color='red')
+                else:
+                    dot.node(str(node.left.path))
+                dot.edge(str(node.path), str(node.left.path), label='1')
+                add_nodes_edges(node.left)
+            if node.right:
+                if node.right.final:
+                    dot.node(str(node.right.path), color='red')
+                else:
+                    dot.node(str(node.right.path))
+                dot.edge(str(node.path), str(node.right.path), label='0')
+                add_nodes_edges(node.right)
+            
+        add_nodes_edges(self.root)
+        dot.render('binary_tree', view=True, format='png')
