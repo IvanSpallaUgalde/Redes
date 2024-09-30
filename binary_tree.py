@@ -1,4 +1,5 @@
 from graphviz import Digraph
+from IPython.display import Image, display
 
 class TreeNode:
     def __init__(self, final):
@@ -75,4 +76,4 @@ class BinaryTree:
                 add_nodes_edges(node.right)
             
         add_nodes_edges(self.root)
-        dot.render('binary_tree', view=True, format='png')
+        dot.render('binary_tree', format='png', cleanup=True, view=True)
