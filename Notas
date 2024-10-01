@@ -24,10 +24,13 @@ K = \sum{2^-L_i} <= 1
 Teorema de Bayes
 p(x_i, y_j) = p(x_i) * p(y_j | x_i) = p(y_j) * p(x_i | y_j)
 
+Informacion mutua media:
+I(X;Y) = \sum{i}\sum{j} p(x_i, y_j) * log{2}{p(x_i | y_j) / p(x_i)} ==> Con prob hacia atras
+== \sum{i}\sum{j} p(x_i) * p(y_j | x_i) * log{2}{p(y_j | x_i) / p(y_j)}
+
 
 
 Huffman code:
 1. Ordenar de mayor a menor los simbolos por sus probs
 2. Agrupar los codigos con la menor prob
 3. Asignar 0 y 1 de forma arbitraria (no importa el orden)
-4. 
