@@ -2,6 +2,7 @@ import math
 import os
 from binary_tree import BinaryTree
 from huffman import get_sorted_huffman_codes
+from shannon_fano import calculations, shannon_fano
 '''
 Inputs: Symbols(probabilities, code)
 Oputput: K, L, n, H(X)
@@ -61,6 +62,21 @@ def huffman():
         for item in huffman_code:
             print(item)
     
+def shannon_fano_list():
+    shannon = []
+    for symbol in symbol_list:
+        shannon.append(symbol[0])
+    list = shannon_fano(shannon)
+    return list
+
+def print_shannon():
+    shannon = shannon_fano_list()
+    H_s, L_s, n_s, K_s = calculations(shannon)
+    print(shannon)
+    print(f"H(X) = {H_s}")
+    print(f"L = {L_s}")
+    print(f"n = {n_s}")
+    print(f"K = {K_s}")
 
 def print_tree():
     global tree
@@ -85,7 +101,10 @@ def main():
     print(f"K = {K}\n")
     print("-------------------Codigo de Huffman------------------------")
     huffman()
+    print("-------------------Codigo de Shannon-Fano-------------------")
+    print_shannon()
 
+    # Print the binary tree (original code)
     print_tree()
     
 
